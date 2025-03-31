@@ -46,7 +46,7 @@ export class SequencerInboxHandler {
   async callReadFunc<T extends ('batchCount'|'totalDelayedMessagesRead')[]>(
     contracts: T,
     args?: any[][],
-  ): Promise<{ [K in T[number]]: string }> {
+  ): Promise<{ [K in T[number]]: any }> {
     const address = await Promise.all(
       contracts.map(async (functionName, i) => {
         return await this.clientHandler.readContract(
