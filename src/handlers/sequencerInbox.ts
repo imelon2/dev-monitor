@@ -42,7 +42,7 @@ export class SequencerInboxHandler {
       newMessageCount: args[5] as bigint,
     };
   }
-
+  
   async callReadFunc<T extends ('batchCount'|'totalDelayedMessagesRead')[]>(
     contracts: T,
     args?: any[][],
@@ -73,7 +73,6 @@ export class SequencerInboxHandler {
     return await this.clientHandler.getLogs(
       'parent',
       this.sequencerInboxAddress,
-      // parseAbi(SequencerInbox__factory.abi)    ,
       SequencerInbox__factory.abi.filter(
         (abiItem) => abiItem.type == 'event' && abiItem.name == 'SequencerBatchDelivered',
       )[0],
